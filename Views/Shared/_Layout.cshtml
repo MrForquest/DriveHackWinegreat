@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - K372470</title>
+    <link rel="stylesheet" href="~/css/commentBox.css" />
+    <link rel="stylesheet" href="~/css/layoutStyles.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar-toggleable-sm">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse">
+                <ul class="navbar-nav horizontal">
+                    <li><a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li><a class="nav-link text-dark" asp-controller="Home" asp-action="Register">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        @RenderBody()
+    </main>
+
+    <div id="bodyScripts">
+        @RenderSection("Scripts", required: false)
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+.commentList {
+    box-shadow: rgba(0, 255, 102, 0.455);
+}
+
+code {
+    color: rgb(249, 78, 78);
+}
+
+.commentBox {
+    color: rgb(172, 237, 22);
+}
+
+.comment {
+    color: white;
+    font-size: medium;
+    padding: 8px;
+    border: 3px inset lightcyan;
+}
+
+.comment>span {
+    color: gold;
+    border: 15px;
+    border-color: rgba(0, 183, 122, 0.712);
+    font-size: large;
+}
+
+.realtimeClock {
+    color: aquamarine;
+}

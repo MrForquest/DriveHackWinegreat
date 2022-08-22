@@ -1,0 +1,66 @@
+﻿a {
+  color: #7effe7;
+  text-decoration: dotted;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.navbar-brand {
+  background-image: url(/images/favicon.ico);
+}
+
+nav {
+  margin: 0;
+  display: inline-flex;
+  position: relative;
+  width: 100%;
+  background-image: url(/images/nav.png);
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+body {
+  background-image: url(/images/background.jpg);
+  margin: 0;
+}
+
+a:hover {
+  text-shadow: 0 0 6px red;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 490px) {
+  html {
+    font-size: 16px;
+    align-items: center;
+  }
+
+  li {
+    position: relative;
+    font-size: 48px;
+    margin-top: 8px;
+    text-align: center;
+    display: inline-block;
+    margin-right: 15px;
+    text-shadow: 0 0 10px cyan;
+    left: 150;
+  }
+}
+
+.container {
+  margin: 10px;
+  color: wheat;
+  font-family: cursive;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}

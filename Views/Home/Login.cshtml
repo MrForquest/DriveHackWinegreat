@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@using (Html.BeginForm("Login", "RegistrationController", FormMethod.Post))
+{
+    <p>Введите свое имя: </p>
+    @Html.TextBox("Login", "Введите имя")
+    <p>Введите адрес :</p>
+    @Html.TextBox("Password", "Введите адрес")
+    <p><input type="submit" value="Отправить" /></p>
+}
