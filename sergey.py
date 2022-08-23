@@ -4,3 +4,6 @@ def mega_func():
 
 def good_func():
     print("GOOD FUNC")
+
+while True:
+    mega_func()
