@@ -1,2 +1,5 @@
 def print_hello():
-  print('Hello world!)
+    print('Hello world!)
+
+def lololo(x):
+    return 'lololo' + str(x) + 'lololo'
