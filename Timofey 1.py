@@ -16,18 +16,18 @@ def get_info_from_link(link):
     images = [i for i in images if 'https://' in i]
     text = ' '.join(' '.join(list(map(lambda x: x.text, soup.find_all('p')))).split('\xa0'))
     article = ' '.join(' '.join(list(map(lambda x: x.text, soup.find_all('h1')))).split('\xa0'))
-    data = dt.date()
+    data = dt.datetime.now().date()
     if 'techcrunch' in url:
         response = requests.get(url + 'rss')
         response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'lxml')
-        date = soup.find('lastbuilddate').text.split()[1:4]
+        soup1 = BeautifulSoup(response.content, 'html.parser')
+        date = soup1.find('lastbuilddate').text.split()[1:4]
         date[1] = strptime(date[1], '%b').tm_mon
         date = list(map(lambda x: int(x), date))
         date = dt.date(date[2], date[1], date[0])
     elif 'techstartups' in url:
         date = soup.find(class_='post_info_date').text.strip().split()[2:]
-        date[1] = date[1][:2]
+        date[1] = date[1][:-1]
         date[0] = [key for key in MonthDict if MonthDict[key] == date[0]]
         date[0] = int(date[0][0])
         date = list(map(lambda x: int(x), date))
@@ -47,7 +47,49 @@ def get_info_from_link(link):
         date = dt.date(date[2], date[1], date[0])
     return link, article, text, images, date
 
-# print(get_info_from_link('https://techcrunch.com/2022/08/25/egypts-subsbase-raises-2-4m-for-its-subscription-and-recurring-revenue-management-platform/'), end='\n')
+#print(get_info_from_link('https://techcrunch.com/2022/08/25/egypts-subsbase-raises-2-4m-for-its-subscription-and-recurring-revenue-management-platform/'), end='\n')
 # print(get_info_from_link('https://techstartups.com/2022/08/24/zebox-america-announces-cohort-9-new-startups-logistics-supply-chain-accelerator-program/'), end='\n')
 # print(get_info_from_link('https://www.eu-startups.com/2022/08/10-greentech-startups-tackling-europes-waste-problem/'))
 # print(get_info_from_link('https://startupnews.com.au/2022/08/25/proptech-hub-wa-set-to-grow-with-new-liberty-flexible-workspaces-joint-venture/'))
+
+def get_rss(url):
+    r = requests.get(url + 'rss')
+    soup = BeautifulSoup(r.content, features='html.parser')
+    if 'techcrunch' in url:
+        links = soup.find_all('comments')
+        links = list(map(lambda x: str(x)[10:-11], (links)))
+        return links
+    if 'techstartups' in url:
+        answ = []
+        links = []
+        for i in soup.find_all('description'):
+            answ.append(i.text)
+        for i in answ:
+            if '<a href="' in i:
+                a = i[9:]
+                num = a.find('"')
+                links.append(a[:num])
+        return links
+    if 'eu-startups' in url or 'startupnews' in url:
+        answ = []
+        links = []
+        for i in soup.find_all('description'):
+            answ.append(i.text)
+        for i in answ:
+            if 'href="' in i:
+                a = i[i.find('href="'):]
+                a = a[6:]
+                num = a.find('"')
+                links.append(a[:num])
+        return links
+    return soup.prettify()
+
+
+alll = []
+#'https://techcrunch.com/category/startups/'
+lin = ['https://techstartups.com/category/startups/',
+       'https://www.eu-startups.com/', 'https://startupnews.com.au/category/news/']
+for i in lin:
+    for j in get_rss(i):
+        print(get_info_from_link(j))
+print(alll, end='\n')
