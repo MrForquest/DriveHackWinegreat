@@ -16,9 +16,10 @@ def get_info_from_link(link):
     images = [i for i in images if 'https://' in i]
     text = ' '.join(' '.join(list(map(lambda x: x.text, soup.find_all('p')))).split('\xa0'))
     article = ' '.join(' '.join(list(map(lambda x: x.text, soup.find_all('h1')))).split('\xa0'))
-    data = dt.datetime.now().date()
+    date = dt.datetime.now().date()
     if 'techcrunch' in url:
-        response = requests.get(url + 'rss')
+        url1 = url[:-8] + 'rss'
+        response = requests.get(url1)
         response.raise_for_status()
         soup1 = BeautifulSoup(response.content, 'html.parser')
         date = soup1.find('lastbuilddate').text.split()[1:4]
@@ -47,7 +48,7 @@ def get_info_from_link(link):
         date = dt.date(date[2], date[1], date[0])
     return link, article, text, images, date
 
-#print(get_info_from_link('https://techcrunch.com/2022/08/25/egypts-subsbase-raises-2-4m-for-its-subscription-and-recurring-revenue-management-platform/'), end='\n')
+# print(get_info_from_link('https://techcrunch.com/2022/08/25/egypts-subsbase-raises-2-4m-for-its-subscription-and-recurring-revenue-management-platform/'), end='\n')
 # print(get_info_from_link('https://techstartups.com/2022/08/24/zebox-america-announces-cohort-9-new-startups-logistics-supply-chain-accelerator-program/'), end='\n')
 # print(get_info_from_link('https://www.eu-startups.com/2022/08/10-greentech-startups-tackling-europes-waste-problem/'))
 # print(get_info_from_link('https://startupnews.com.au/2022/08/25/proptech-hub-wa-set-to-grow-with-new-liberty-flexible-workspaces-joint-venture/'))
@@ -85,11 +86,11 @@ def get_rss(url):
     return soup.prettify()
 
 
-alll = []
+'''alll = []
 #'https://techcrunch.com/category/startups/'
-lin = ['https://techstartups.com/category/startups/',
+lin = ['https://techcrunch.com/category/startups/', 'https://techstartups.com/category/startups/',
        'https://www.eu-startups.com/', 'https://startupnews.com.au/category/news/']
 for i in lin:
     for j in get_rss(i):
         print(get_info_from_link(j))
-print(alll, end='\n')
+print(alll, end='\n')'''
