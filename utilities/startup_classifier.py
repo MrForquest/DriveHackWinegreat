@@ -1,8 +1,4 @@
-import pandas as pd
 from fuzzywuzzy import fuzz
-import joblib
-import nltk
-import sklearn
 import dill as pickle
 from func_for_classifier import tokenize_sentence
 
@@ -44,7 +40,7 @@ class Key_words:
 
 class StartupClassifier:
     def __init__(self):
-        with open('regresion7_plk', 'rb') as f:
+        with open('../static/regresion7_plk', 'rb') as f:
             self.classifier_regres = pickle.load(f)
         self.keywords_classifier = Key_words()
 

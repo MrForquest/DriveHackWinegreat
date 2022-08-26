@@ -6,7 +6,8 @@ from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 
 nltk.download('stopwords')
-df = pd.read_csv("data_startup.csv")
+nltk.download('punkt')
+df = pd.read_csv("../static/data_startup.csv")
 
 
 def tokenize_sentence(sentence: str, remove_stop_words: bool = True):
