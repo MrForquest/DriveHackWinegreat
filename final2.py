@@ -16,11 +16,10 @@ MonthDict = {1: "January", 2: "February", 3: "March", 4: "April", 5: "May",
              6: "June", 7: "July", 8: "August", 9: "September", 10: "October", 11: "November", 12: "December"}
 diferent_cites_types = {'rss': ['techcrunch', 'techstartups', 'eu-startups', 'startupnews'],
                         'html': ['techstars', 'inc42', 'wired']}
-links = ['https://techcrunch.com/category/startups/']
-# 'https://techstartups.com/category/startups/',
-#          'https://www.eu-startups.com/', 'https://startupnews.com.au/category/news/',
-#          'https://www.techstars.com/newsroom', 'https://inc42.com/buzz/',
-#          'https://www.wired.com/search/?q=startups&sort=score+desc']
+links = ['https://techcrunch.com/category/startups/', 'https://techstartups.com/category/startups/',
+         'https://www.eu-startups.com/', 'https://startupnews.com.au/category/news/',
+         'https://www.techstars.com/newsroom', 'https://inc42.com/buzz/',
+         'https://www.wired.com/search/?q=startups&sort=score+desc']
 
 #functions
 
@@ -57,7 +56,7 @@ def get_info_from_link(link):
         date[1] = strptime(date[1], '%b').tm_mon
         date = list(map(lambda x: int(x), date))
         date = dt.date(date[2], date[1], date[0])
-        return link, article, text, date
+        return [link, article, text, date]
 
     response = requests.get(url)
     response.raise_for_status()
@@ -120,7 +119,7 @@ def get_info_from_link(link):
         date[0] = strptime(date[0], '%b').tm_mon
         date = list(map(lambda x: int(x), date))
         date = dt.date(date[2], date[0], date[1])
-    return link, article, text, date
+    return [link, article, text, date]
 
 #ALEX_PARTALEX_PARTALEX_PARTALEX_PARTALEX_PARTALEX_PARTALEX_PARTALEX_PARTALEX_PARTALEX_PARTALEX_PARTALEX_PARTALEX_PART
 
