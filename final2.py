@@ -16,23 +16,24 @@ MonthDict = {1: "January", 2: "February", 3: "March", 4: "April", 5: "May",
              6: "June", 7: "July", 8: "August", 9: "September", 10: "October", 11: "November", 12: "December"}
 diferent_cites_types = {'rss': ['techcrunch', 'techstartups', 'eu-startups', 'startupnews'],
                         'html': ['techstars', 'inc42', 'wired']}
-links = ['https://techcrunch.com/category/startups/', 'https://techstartups.com/category/startups/',
-         'https://www.eu-startups.com/', 'https://startupnews.com.au/category/news/',
-         'https://www.techstars.com/newsroom', 'https://inc42.com/buzz/',
-         'https://www.wired.com/search/?q=startups&sort=score+desc']
+links = ['https://techcrunch.com/category/startups/']
+# 'https://techstartups.com/category/startups/',
+#          'https://www.eu-startups.com/', 'https://startupnews.com.au/category/news/',
+#          'https://www.techstars.com/newsroom', 'https://inc42.com/buzz/',
+#          'https://www.wired.com/search/?q=startups&sort=score+desc']
 
 #functions
 
 #TIM_PARTTIM_PARTTIM_PARTTIM_PARTTIM_PARTTIM_PARTTIM_PARTTIM_PARTTIM_PARTTIM_PARTTIM_PARTTIM_PARTTIM_PARTTIM_PART
 
 def check_link(link):
-    con = sqlite3.connect("aaaasdasasasaefadfadfad")
+    con = sqlite3.connect("startups.db")
     cur = con.cursor()
-    result = cur.execute("""SELECT * FROM """).fetchall()
+    result = cur.execute("""SELECT link FROM articles""").fetchall()
     if link in result:
         con.close()
         return False
-    cur.execute('''INSERT INTO wegwrgrgrg(effbfbfb) VALUES('svsfvsdfvswdvwd')''')
+    cur.execute(f'''INSERT INTO articles(link) VALUES('{link}')''')
     con.close()
     return True
 
@@ -68,25 +69,25 @@ def get_info_from_link(link):
     text = ' '.join(' '.join(list(map(lambda x: x.text, soup.find_all('p')))).split('\xa0'))
 
     if 'techcrunch' in url:
-        '''url1 = url[:-8] + 'rss'                               
+        url1 = url[:-8] + 'rss' #
         response = requests.get(url1)                         
         response.raise_for_status()                           
         soup1 = BeautifulSoup(response.content, 'html.parser')
         date = soup1.find('lastbuilddate').text.split()[1:4]  
         date[1] = strptime(date[1], '%b').tm_mon              
         date = list(map(lambda x: int(x), date))              
-        date = dt.date(date[2], date[1], date[0])'''
-        date = list(map(lambda x: int(x), filter(lambda x: x.isdigit(), url.split('/'))))
-        date = dt.date(*date)
+        date = dt.date(date[2], date[1], date[0])
+        '''date = list(map(lambda x: int(x), filter(lambda x: x.isdigit(), url.split('/'))))
+        date = dt.date(*date)'''
     elif 'techstartups' in url:
-        '''date = soup.find(class_='post_info_date').text.strip().split()[2:]
+        date = soup.find(class_='post_info_date').text.strip().split()[2:]
         date[1] = date[1][:-1]
         date[0] = [key for key in MonthDict if MonthDict[key] == date[0]]
         date[0] = int(date[0][0])
         date = list(map(lambda x: int(x), date))
-        date = dt.date(date[2], date[0], date[1])'''
-        date = list(map(lambda x: int(x), filter(lambda x: x.isdigit(), url.split('/'))))
-        date = dt.date(*date)
+        date = dt.date(date[2], date[0], date[1])
+        # '''date = list(map(lambda x: int(x), filter(lambda x: x.isdigit(), url.split('/'))))
+        # date = dt.date(*date)'''
     elif 'eu-startups' in url:
         date = soup.find('time').text.split()
         date[1] = date[1][:-1]
@@ -95,13 +96,13 @@ def get_info_from_link(link):
         date = list(map(lambda x: int(x), date))
         date = dt.date(date[2], date[0], date[1])
     elif 'startupnews' in url:
-        '''date = soup.find('time').text.split()
+        date = soup.find('time').text.split()
         date[1] = [key for key in MonthDict if MonthDict[key] == date[1]]
         date[1] = int(date[1][0])
         date = list(map(lambda x: int(x), date))
-        date = dt.date(date[2], date[1], date[0])'''
-        date = list(map(lambda x: int(x), filter(lambda x: x.isdigit(), url.split('/'))))
-        date = dt.date(*date)
+        date = dt.date(date[2], date[1], date[0])
+        '''date = list(map(lambda x: int(x), filter(lambda x: x.isdigit(), url.split('/'))))
+        date = dt.date(*date)'''
     elif 'techstars' in url:
         # article = soup.find('title').text
         text = text + ' '.join(' '.join(list(map(lambda x: x.text, soup.find_all('h2')))).split('\xa0'))
@@ -231,7 +232,8 @@ def get_info_final(links_base):
     return_master = []
     for link_base in links_base:
         for link in get_links_from_diff_pages(link_base):
-            if not get_info_from_link(link_base):
+            if not get_info_from_link(link):
                 break
             return_master.append(get_info_from_link(link))
     return return_master
+print(get_info_final(links))
