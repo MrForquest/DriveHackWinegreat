@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DriveHack.Site.Models;
 using Microsoft.AspNetCore.Mvc;
-
-//Собственность [Discord:@K372470#7545] запрещаю использование без запроса на согласие 
+//Собственность [Discord:@K372470#7545] запрещаю использование без запроса на согласия 
 
 namespace DriveHack.Site.Controllers
 {
@@ -28,7 +27,6 @@ namespace DriveHack.Site.Controllers
                 int result = db.Props.Count(x => x.startId == id);
                 resultList.Add(new StartupViewItem() { IdCount = result, Name = db.StartUp.First(x => x.id == id).name, Id = id });
             }
-            resultList.Reverse();
             return View("~/Views/Home/Index.cshtml", resultList.ToArray());
         }
         [HttpPost("/posts/withdata")]
@@ -50,6 +48,18 @@ namespace DriveHack.Site.Controllers
             if (rq.startTime > rq.endTime)
                 return Ok();
             List<CsvModel> resultList = new();
+            for (int id = 0; id < db.StartUp.Count();)
+            {
+                List<string> tmp = new();
+                foreach (var model in db.Props.Where(x => x.startId == id & x.publishTime > rq.startTime & x.publishTime < rq.endTime).Select(x => x.link))
+                    tmp.Add(model);
+                resultList.Add(new CsvModel(db.StartUp.First(x => x.id == id).name, tmp));
+            }
+
+            for (int id = 0; id < 11; id++)
+            {
+                resultList.Add(new StartupViewItem() { IdCount = id + new Random().Next(1, 3), Name = "Startup" + id.ToString(), Id = id });
+            }
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < resultList.Count; i++)
             {
