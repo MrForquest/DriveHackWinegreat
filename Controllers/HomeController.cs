@@ -53,21 +53,15 @@ namespace DriveHack.Site.Controllers
                 List<string> tmp = new();
                 foreach (var model in db.Props.Where(x => x.startId == id & x.publishTime > rq.startTime & x.publishTime < rq.endTime).Select(x => x.link))
                     tmp.Add(model);
-                resultList.Add(new CsvModel(db.StartUp.First(x => x.id == id).name, tmp));
-            }
-
-            for (int id = 0; id < 11; id++)
-            {
-                resultList.Add(new StartupViewItem() { IdCount = id + new Random().Next(1, 3), Name = "Startup" + id.ToString(), Id = id });
+                resultList.Add(new CsvModel(db.StartUp.First(x => x.id == id).name, tmp.ToArray()));
             }
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < resultList.Count; i++)
+            sb.Append("Name;Count;Links");
+            foreach (var model in resultList)
             {
-                string[] model = resultList[i].ToStrings();
-                for (int j = 0; j < model.Length; j++)
-                {
-                    sb.Append(model[j] + ',');
-                }
+                sb.Append(model.Name + ';' + model.MentionCount + ',');
+                foreach (var x in model.Links)
+                    sb.Append(x + ',');
                 sb.Append("\r\n");
 
             }

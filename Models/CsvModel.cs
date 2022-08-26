@@ -5,7 +5,7 @@ namespace DriveHack.Site.Models
 {
     public class CsvModel
     {
-        public CsvModel(string name, IEnumerable<string> links)
+        public CsvModel(string name, string[] links)
         {
             Name = name;
             Links = links;
@@ -15,11 +15,11 @@ namespace DriveHack.Site.Models
 
         public string Name;
         public int MentionCount;
-        public IEnumerable<string> Links;
+        public string[] Links;
 
-        public string[] ToStrings()
+        public IEnumerable<string> ToStrings()
         {
-            return new string[] { Name, MentionCount.ToString(), Links.ToString() };
+            return (new string[] { Name, MentionCount.ToString() }.Concat(Links.AsEnumerable()));
         }
     }
 }
