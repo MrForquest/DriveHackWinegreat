@@ -1,14 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
 
-diffrent_cites_types = {'rss': ['techcrunch', 'techstartups', 'eu-startups', 'startupnews'],
-                        'html': ['techstars', 'inc42']}
+diferent_cites_types = {'rss': ['techcrunch', 'techstartups', 'eu-startups', 'startupnews'],
+                        'html': ['techstars', 'inc42', 'wired']}
 
 
 def get_links_from_main_link(url):
     cite_type = 'rss'
-    for key in diffrent_cites_types.keys():
-        for value in diffrent_cites_types[key]:
+    for key in diferent_cites_types.keys():
+        for value in diferent_cites_types[key]:
             if value in url:
                 cite_type = key
                 break
@@ -71,5 +71,14 @@ def get_html(url):
             d = str(a)[str(i).find('href="') + 7:]
             num = d.find('"')
             links.append(d[:num])
+        return links
+    if 'wired' in url:
+        a = soup.find_all('a',
+                          class_='SummaryItemHedLink-cgjIKh cEirlV summary-item-tracking__hed-link summary-item__hed-link')
+        links = []
+        for i in a:
+            d = str(a)[str(i).find('href="') + 7:]
+            num = d.find('"')
+            links.append('https://www.wired.com' + d[:num])
         return links
     return None  # soup.prettify()

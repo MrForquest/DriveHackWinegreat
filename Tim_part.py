@@ -1,6 +1,7 @@
 import datetime as dt
 import urllib.request
 from time import strptime
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -15,7 +16,7 @@ MonthDict = {1: "January", 2: "February", 3: "March", 4: "April", 5: "May",
 
 def get_info_from_link(link):
     url = link
-    if 'inc42' in url:      # у этого сайта возникает ошибка
+    if 'inc42' in url:  # у этого сайта возникает ошибка
         # requests.exceptions.HTTPError: 403 Client Error: Forbidden for url:
         # при обычном парсинге
         opener = AppURLopener()
@@ -88,7 +89,17 @@ def get_info_from_link(link):
         date[0] = strptime(date[0], '%b').tm_mon
         date = list(map(lambda x: int(x), date))
         date = dt.date(date[2], date[0], date[1])
+    elif 'wired' in url:
+        article = ' '.join(' '.join(list(map(lambda x: x.text, soup.find_all('h1')))).split('\xa0'))
+        date = soup.find('time',
+                         class_="BaseWrap-sc-UABmB BaseText-fETRLB ContentHeaderTitleBlockPublishDate-kiLLWL hkSZSE mYbQm fbqCPg").text.split()[
+               :-2]
+        date[1] = date[1][:-1]
+        date[0] = strptime(date[0], '%b').tm_mon
+        date = list(map(lambda x: int(x), date))
+        date = dt.date(date[2], date[0], date[1])
     return link, article, text, images, date
+
 
 # print(get_info_from_link('https://techcrunch.com/2022/08/25/egypts-subsbase-raises-2-4m-for-its-subscription-and-recurring-revenue-management-platform/'), end='\n')
 # print(get_info_from_link('https://techstartups.com/2022/08/24/zebox-america-announces-cohort-9-new-startups-logistics-supply-chain-accelerator-program/'), end='\n')
@@ -96,3 +107,4 @@ def get_info_from_link(link):
 # print(get_info_from_link('https://startupnews.com.au/2022/08/25/proptech-hub-wa-set-to-grow-with-new-liberty-flexible-workspaces-joint-venture/'))
 # print(get_info_from_link('https://www.techstars.com/newsroom/learn-how-to-raise-capital-from-the-experts'))
 # print(get_info_from_link('https://inc42.com/buzz/india-witnessed-18-mn-cyberattacks-2-lakh-threats-a-day-in-q1-2022-google/'))
+print(get_info_from_link('https://www.wired.com/story/the-speedy-downfall-of-rapid-delivery/'))
