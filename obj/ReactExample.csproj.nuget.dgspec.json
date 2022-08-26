@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kirill\\Source\\ReactExample\\ReactExample.csproj": {}
+    "C:\\Users\\Kirill\\Source\\DriveHackBackup\\ReactExample.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kirill\\Source\\ReactExample\\ReactExample.csproj": {
+    "C:\\Users\\Kirill\\Source\\DriveHackBackup\\ReactExample.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kirill\\Source\\ReactExample\\ReactExample.csproj",
+        "projectUniqueName": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\ReactExample.csproj",
         "projectName": "ReactExample",
-        "projectPath": "C:\\Users\\Kirill\\Source\\ReactExample\\ReactExample.csproj",
+        "projectPath": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\ReactExample.csproj",
         "packagesPath": "C:\\Users\\Kirill\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kirill\\Source\\ReactExample\\obj\\",
+        "outputPath": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kirill\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -46,11 +46,11 @@
               "target": "Package",
               "version": "[3.19.0, )"
             },
-            "JavaScriptEngineSwitcher.V8.Native.win-x64": {
+            "Microsoft.ClearScript.V8.Native.win-x64": {
               "target": "Package",
-              "version": "[3.18.4, )"
+              "version": "[7.3.1, )"
             },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.8, )"
             },

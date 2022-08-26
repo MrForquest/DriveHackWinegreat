@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8OULx9bQ3qRU5GdN7ef+MmIpn0OUWizb977GeHsqKJs=",
+  "Hash": "Z7isViw/3vBI8enlMgwHF9KUNm9T1gK/3K3Lx8M/qbk=",
   "Source": "ReactExample",
   "BasePath": "_content/ReactExample",
   "Mode": "Default",
@@ -10,19 +10,19 @@
     {
       "Name": "ReactExample\\wwwroot",
       "Source": "ReactExample",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\",
       "BasePath": "_content/ReactExample",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\css\\commentBox.css",
+      "Identity": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\css\\detailStyles.css",
       "SourceId": "ReactExample",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\",
       "BasePath": "_content/ReactExample",
-      "RelativePath": "css/commentBox.css",
+      "RelativePath": "css/detailStyles.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -31,15 +31,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\commentBox.css"
+      "OriginalItemSpec": "wwwroot\\css\\detailStyles.css"
     },
     {
-      "Identity": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\css\\floatingPanel.css",
+      "Identity": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\css\\indexStyles.css",
       "SourceId": "ReactExample",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\",
       "BasePath": "_content/ReactExample",
-      "RelativePath": "css/floatingPanel.css",
+      "RelativePath": "css/indexStyles.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -48,15 +48,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\floatingPanel.css"
+      "OriginalItemSpec": "wwwroot\\css\\indexStyles.css"
     },
     {
-      "Identity": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\css\\layoutStyles.css",
+      "Identity": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\css\\startupStyles.css",
       "SourceId": "ReactExample",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\",
       "BasePath": "_content/ReactExample",
-      "RelativePath": "css/layoutStyles.css",
+      "RelativePath": "css/startupStyles.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,13 +65,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\layoutStyles.css"
+      "OriginalItemSpec": "wwwroot\\css\\startupStyles.css"
     },
     {
-      "Identity": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\images\\background.jpg",
+      "Identity": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\images\\background.jpg",
       "SourceId": "ReactExample",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\",
       "BasePath": "_content/ReactExample",
       "RelativePath": "images/background.jpg",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\images\\background.jpg"
     },
     {
-      "Identity": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\images\\favicon.ico",
+      "Identity": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\images\\favicon.ico",
       "SourceId": "ReactExample",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\",
       "BasePath": "_content/ReactExample",
       "RelativePath": "images/favicon.ico",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\images\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\images\\nav.png",
+      "Identity": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\images\\nav.png",
       "SourceId": "ReactExample",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Kirill\\Source\\DriveHackBackup\\wwwroot\\",
       "BasePath": "_content/ReactExample",
       "RelativePath": "images/nav.png",
       "AssetKind": "All",
@@ -117,74 +117,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\nav.png"
-    },
-    {
-      "Identity": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\js\\authorizedCommentBox.jsx",
-      "SourceId": "ReactExample",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
-      "BasePath": "_content/ReactExample",
-      "RelativePath": "js/authorizedCommentBox.jsx",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\authorizedCommentBox.jsx"
-    },
-    {
-      "Identity": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\js\\commentBox.jsx",
-      "SourceId": "ReactExample",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
-      "BasePath": "_content/ReactExample",
-      "RelativePath": "js/commentBox.jsx",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\commentBox.jsx"
-    },
-    {
-      "Identity": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\js\\realtimeClock.jsx",
-      "SourceId": "ReactExample",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
-      "BasePath": "_content/ReactExample",
-      "RelativePath": "js/realtimeClock.jsx",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\realtimeClock.jsx"
-    },
-    {
-      "Identity": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\js\\remarkable.min.js",
-      "SourceId": "ReactExample",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Kirill\\Source\\ReactExample\\wwwroot\\",
-      "BasePath": "_content/ReactExample",
-      "RelativePath": "js/remarkable.min.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\remarkable.min.js"
     }
   ]
 }

@@ -1,0 +1,107 @@
+@model StartupViewItem[]
+@{
+    Layout = "_Layout";
+}
+@functions {
+    string[] GetLables()
+    {
+        var tmp = Model.Take(10);
+        List<string> result = new List<string>();
+        foreach (var x in tmp)
+            result.Add(x.Name);
+        return result.ToArray();
+    }
+    short[] GetData()
+    {
+        var tmp = Model.Take(10);
+        List<short> result = new List<short>();
+        foreach (var x in tmp)
+            result.Add((short)x.IdCount);
+        return result.ToArray();
+    }
+}
+
+<div class="dataSelector">
+@using(Html.BeginForm("RequireTime","Home",FormMethod.Post))
+{
+    <input type="date" name="startTime" value="2005-01-02"min="2005-01-01" max="2022-08-30">
+    <input type="date" name="endTime" value="2022-08-26" min="2005-01-02" max="2022-08-31">
+    <input type="submit" value="Use Selected Data" />
+}
+</div>
+
+@if(Model.Length==0)
+{
+        <div class="emptyModelMsg">
+        <span>Nothing To See Here, Try selecting Different Time</span>
+    </div>
+}
+else{
+
+<canvas id="bar-chart" width="400" height="100"></canvas>
+
+<div className="statsTable">
+            
+            <table><thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Count</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+                <tbody>
+                    @foreach (var _model in Model)
+                    {
+                        <tr class="StartupBox" key=@_model.Id>
+                            <td class="Name">@_model.Name</td>
+                            <td class="ModelCount">@_model.IdCount</td>
+                            <td><a asp-action="Details" asp-controller="Home" asp-route-id=@_model.Id>Read More...</a></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    new Chart(
+        document.getElementById('bar-chart'),
+        {
+            type: 'bar',
+            data: {
+                labels:[@foreach (var item in GetLables()){<text>'@item',</text>}],
+                datasets: [{
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    data: [@foreach (var item in GetData()){<text>@item,</text>}]
+                }]                
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            return tooltipItem.yLabel;
+                        }
+                    }
+                }
+                }
+        }
+    )
+</script>
+
+<div class="dataSelector">
+@using(Html.BeginForm("GetStatsFile","Home",FormMethod.Get))
+{
+    <input type="date" name="startTime" value="2005-01-02"min="2005-01-01" max="2022-08-30">
+    <input type="date" name="endTime" value="2022-08-26" min="2005-01-02" max="2022-08-31">
+    <input type="submit" value="Download Csv" />
+}
+</div>
+}
+
+
+@section Head{
+<link rel="stylesheet" href="~/css/indexStyles.css" />
+}

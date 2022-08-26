@@ -1,0 +1,21 @@
+@model DetailedViewItem
+@{
+    Layout = "_Layout";
+}
+
+<p class="name">
+    @Model.Name
+</p>
+<br />
+<br />
+<span>Links:</span>
+<p class="links">
+    @foreach (var link in Model.Links)
+    {
+        <a href="@link"><u>Click</u></a>
+    }
+</p>
+
+@section Head{
+<link rel="stylesheet" href="~/css/detailStyles.css" />
+}

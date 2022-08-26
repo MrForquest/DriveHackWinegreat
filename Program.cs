@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System.Linq;
 using System.Net;
 
-namespace ReactExample
+namespace DriveHack.Site
 {
     public class Program
     {
@@ -17,7 +18,7 @@ namespace ReactExample
         {
             webBuilder.UseKestrel(options =>
             {
-                var address = IPAddress.Parse("192.168.1.2");
+                var address = Dns.GetHostAddresses(Dns.GetHostName(), System.Net.Sockets.AddressFamily.InterNetwork).First();
                 options.Listen(address, 5000);
                 options.Listen(address, 5001, l =>
               {

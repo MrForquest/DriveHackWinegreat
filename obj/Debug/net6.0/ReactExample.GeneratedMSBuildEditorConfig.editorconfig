@@ -8,33 +8,25 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ReactExample
 build_property.RootNamespace = ReactExample
-build_property.ProjectDir = c:\Users\Kirill\Source\DriveHack\
+build_property.ProjectDir = c:\Users\Kirill\Source\DriveHackBackup\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = c:\Users\Kirill\Source\DriveHack
+build_property.MSBuildProjectDirectory = c:\Users\Kirill\Source\DriveHackBackup
 build_property._RazorSourceGeneratorDebug = 
 
-[c:/Users/Kirill/Source/DriveHack/Views/Home/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+[c:/Users/Kirill/Source/DriveHackBackup/Views/Home/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Kirill/Source/DriveHack/Views/Home/MainPage.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWluUGFnZS5jc2h0bWw=
+[c:/Users/Kirill/Source/DriveHackBackup/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Kirill/Source/DriveHack/Views/Home/PrivatePage.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YXRlUGFnZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[c:/Users/Kirill/Source/DriveHack/Views/Home/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Rlci5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[c:/Users/Kirill/Source/DriveHack/Views/Shared/_Layout.cshtml]
+[c:/Users/Kirill/Source/DriveHackBackup/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Kirill/Source/DriveHack/Views/_ViewImports.cshtml]
+[c:/Users/Kirill/Source/DriveHackBackup/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
