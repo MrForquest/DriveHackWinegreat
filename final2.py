@@ -235,4 +235,3 @@ def get_info_final(links_base):
                 break
             return_master.append(get_info_from_link(link))
     return return_master
-print(get_info_final(links))
