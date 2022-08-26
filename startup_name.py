@@ -10,40 +10,6 @@ def get_startup_names(text):
     doc = spacy_nlp(text.strip())
 
     organization_entities = list()
-
-    for i in doc.ents:
-        entry = str(i.lemma_).lower()
-        text = text.replace(str(i).lower(), "")
-        if i.label_ in ["ORG"]:
-            organization_entities.append(entry)
-
-    counter = Counter(organization_entities)
-
-    matcher = Matcher(spacy_nlp.vocab)
-    patterns = [
-        [{"LOWER": "startup"}, {"ENT_TYPE": {"IN": ["ORG", "PERSON"]}}],
-        [{"LOWER": "startup"}, {"ENT_TYPE": {"IN": ["ORG", "PERSON"]}},
-         {"ENT_TYPE": {"IN": ["ORG", "PERSON"]}}]
-    ]
-
-    matcher.add("StartUp", patterns)
-
-    matches = matcher(doc)
-    startups = list()
-    # todo сделать доп поиск по паттерну + свой мега способ
-    for match_id, start, end in matches:
-        string_id = spacy_nlp.vocab.strings[match_id]  # Get string representation
-        span = doc[start:end]  # The matched span
-        name = span.text.replace("startup", "")
-        name = name.replace("Startup", "")
-        startups.append(name)
-    return startups
-
-
-def get_startup_names2(text):
-    doc = spacy_nlp(text.strip())
-
-    organization_entities = list()
     org_pos = dict()
     for i in doc.ents:
         entry = str(i.lemma_).lower()
@@ -64,8 +30,14 @@ def get_startup_names2(text):
                 new_counter[org2] += counter[org1]
 
     most_pop_sp = sorted(new_counter.items(), key=lambda s: -s[1])[:3]
-
     matcher = Matcher(spacy_nlp.vocab)
+    patterns_name = [
+        [{"LOWER": "startup"}, {"ENT_TYPE": {"IN": ["ORG", "PERSON"]}}],
+        [{"LOWER": "startup"}, {"ENT_TYPE": {"IN": ["ORG", "PERSON"]}},
+         {"ENT_TYPE": {"IN": ["ORG", "PERSON"]}}]
+    ]
+    matcher.add("StartupName", patterns_name)
+
     patterns_word = [
         [{"LOWER": "startup"}]
     ]
@@ -73,11 +45,15 @@ def get_startup_names2(text):
 
     matches = matcher(doc)
     word_startup = list()
-
+    name_startup = list()
     for match_id, start, end in matches:
         string_id = spacy_nlp.vocab.strings[match_id]  # Get string representation
         span = doc[start:end]  # The matched span
-        word_startup.append((start + end) / 2)
+        if string_id == "StartupWord":
+            word_startup.append((start + end) / 2)
+        if string_id == "StartupName":
+            name = span.text.replace("startup", "").replace("Startup", "").strip()
+            name_startup.append(name)
 
     sp_probs = list()
     for sp in most_pop_sp:
@@ -89,5 +65,18 @@ def get_startup_names2(text):
         count = new_counter[sp[0]]
         # print(sp[0], min_dist)
         sp_probs.append((sp[0], count + (1 / min_dist) * 60))
+    sp_names = sorted(sp_probs, key=lambda s: -s[1])
+    sp_names = [sp[0].strip() for sp in sp_names]
+    abs_sp = list()
+    if name_startup:
+        abs_sp = name_startup
+    else:
+        abs_sp.append(sp_names[0])
+    return abs_sp
 
-    return sorted(sp_probs, key=lambda s: -s[1])[0][0]
+
+print("стартуем")
+file = open("example_text_transport8.TXT", "r")
+text_ = file.read()
+file.close()
+print(get_startup_names(text_))
