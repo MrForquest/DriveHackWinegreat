@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using DriveHack.Site.Models;
 using Microsoft.AspNetCore.Mvc;
 
+//Собственность [Discord:@K372470#7545] запрещаю использование без запроса на согласие 
+
 namespace DriveHack.Site.Controllers
 {
     [Controller]
@@ -21,10 +23,6 @@ namespace DriveHack.Site.Controllers
         public ActionResult Index([FromServices] ApplicationContext db)
         {
             List<StartupViewItem> resultList = new List<StartupViewItem>();
-            for (int id = 0; id < 11; id++)
-            {
-                resultList.Add(new StartupViewItem() { IdCount = id + new Random().Next(1, 3), Name = "Startup" + id.ToString(), Id = id });
-            }
             for (int id = 0; id < db.StartUp.Count(); id++)
             {
                 int result = db.Props.Count(x => x.startId == id);
