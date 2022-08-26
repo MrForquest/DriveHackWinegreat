@@ -23,9 +23,6 @@ def get_info_from_link(link):
         response = opener.open(url)
         soup = BeautifulSoup(response, 'lxml')
         # print(soup.prettify())
-
-        images = list(map(lambda x: x['src'], soup.find_all('img')))
-        images = [i for i in images if 'https://' in i]
         article = soup.find('title').text
         text = ' '.join(' '.join(list(map(lambda x: x.text, soup.find_all('p')))).split('\xa0'))
         date = soup.find('div', class_='date').text.split()[:2]
@@ -33,14 +30,12 @@ def get_info_from_link(link):
         date[1] = strptime(date[1], '%b').tm_mon
         date = list(map(lambda x: int(x), date))
         date = dt.date(date[2], date[1], date[0])
-        return link, article, text, images, date
+        return link, article, text, date
 
     response = requests.get(url)
     response.raise_for_status()
     soup = BeautifulSoup(response.content, 'lxml')
 
-    images = list(map(lambda x: x['src'], soup.find_all('img')))
-    images = [i for i in images if 'https://' in i]
     date = dt.datetime.now().date()
     article = soup.find('title').text
     # article = ' '.join(' '.join(list(map(lambda x: x.text, soup.find_all('h1')))).split('\xa0'))
@@ -98,7 +93,7 @@ def get_info_from_link(link):
         date[0] = strptime(date[0], '%b').tm_mon
         date = list(map(lambda x: int(x), date))
         date = dt.date(date[2], date[0], date[1])
-    return link, article, text, images, date
+    return link, article, text, date
 
 
 # print(get_info_from_link('https://techcrunch.com/2022/08/25/egypts-subsbase-raises-2-4m-for-its-subscription-and-recurring-revenue-management-platform/'), end='\n')
@@ -107,4 +102,4 @@ def get_info_from_link(link):
 # print(get_info_from_link('https://startupnews.com.au/2022/08/25/proptech-hub-wa-set-to-grow-with-new-liberty-flexible-workspaces-joint-venture/'))
 # print(get_info_from_link('https://www.techstars.com/newsroom/learn-how-to-raise-capital-from-the-experts'))
 # print(get_info_from_link('https://inc42.com/buzz/india-witnessed-18-mn-cyberattacks-2-lakh-threats-a-day-in-q1-2022-google/'))
-print(get_info_from_link('https://www.wired.com/story/the-speedy-downfall-of-rapid-delivery/'))
+# print(get_info_from_link('https://www.wired.com/story/the-speedy-downfall-of-rapid-delivery/'))
