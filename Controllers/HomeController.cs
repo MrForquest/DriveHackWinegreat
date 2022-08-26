@@ -50,7 +50,7 @@ namespace DriveHack.Site.Controllers
             if (startTime > endTime)
                 return Ok();
             List<CsvModel> resultList = new();
-            for (int id = 0; id < db.StartUp.Count();)
+            for (int id = 0; id < db.StartUp.Count(); id++)
             {
                 List<string> tmp = new();
                 foreach (var model in db.Props.Where(x => x.startId == id & x.publishTime > startTime & x.publishTime < endTime).Select(x => x.link))
@@ -63,7 +63,7 @@ namespace DriveHack.Site.Controllers
             {
                 if (model.MentionCount > 0)
                 {
-                    sb.Append(model.Name + ';' + model.MentionCount + ',');
+                    sb.Append(model.Name + ';' + model.MentionCount + ';');
                     foreach (var x in model.Links)
                         sb.Append(x + ',');
                     sb.Append("\r\n");

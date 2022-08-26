@@ -20,7 +20,6 @@ tbody td {
 #bar-chart {
     margin: 10px;
     background: whitesmoke;
-    margin-bottom: 40px;
 }
 
 div.dataSelector form {
@@ -29,7 +28,7 @@ div.dataSelector form {
     align-items: stretch;
     flex-wrap: nowrap;
     flex-direction: column;
-    margin: 15px;
+    margin: 7px;
     height: 100px;
 }
 
