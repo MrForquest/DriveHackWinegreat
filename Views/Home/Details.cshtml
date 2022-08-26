@@ -6,15 +6,13 @@
 <p class="name">
     @Model.Name
 </p>
-<br />
-<br />
 <span>Links:</span>
-<p class="links">
+<div class="links">
     @foreach (var link in Model.Links)
     {
-        <a href="@link"><u>Click</u></a>
+        <a href="@link" style="display: block;">Click</a>
     }
-</p>
+</div>
 
 @section Head{
 <link rel="stylesheet" href="~/css/detailStyles.css" />

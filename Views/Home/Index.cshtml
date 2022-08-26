@@ -52,12 +52,13 @@ else{
                 <tbody>
                     @foreach (var _model in Model)
                     {
+                        if(_model.IdCount>0){
                         <tr class="StartupBox" key=@_model.Id>
                             <td class="Name">@_model.Name</td>
                             <td class="ModelCount">@_model.IdCount</td>
                             <td><a asp-action="Details" asp-controller="Home" asp-route-id=@_model.Id>Read More...</a></td>
                     </tr>
-                    }
+                    }}
                 </tbody>
             </table>
 </div>

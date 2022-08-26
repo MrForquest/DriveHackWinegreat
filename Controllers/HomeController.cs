@@ -25,45 +25,49 @@ namespace DriveHack.Site.Controllers
             for (int id = 0; id < db.StartUp.Count(); id++)
             {
                 int result = db.Props.Count(x => x.startId == id);
-                resultList.Add(new StartupViewItem() { IdCount = result, Name = db.StartUp.First(x => x.id == id).name, Id = id });
+                resultList.Add(new StartupViewItem() { IdCount = result, Name = db.StartUp.Where(x => x.id == id).First().name, Id = id });
             }
+            resultList.Sort();
             return View("~/Views/Home/Index.cshtml", resultList.ToArray());
         }
         [HttpPost("/posts/withdata")]
-        public ActionResult RequireTime([FromForm] RequestWithTime rq, [FromServices] ApplicationContext db)
+        public ActionResult RequireTime(DateTime endTime, DateTime startTime, [FromServices] ApplicationContext db)
         {
-            if (rq.startTime > rq.endTime)
+            if (startTime > endTime)
                 return Ok();
             List<StartupViewItem> resultList = new List<StartupViewItem>();
             for (int id = 0; id < db.StartUp.Count(); id++)
             {
-                int result = db.Props.Count(x => x.startId == id & x.publishTime > rq.startTime & x.publishTime < rq.endTime);
+                int result = db.Props.Count(x => x.startId == id & x.publishTime > startTime & x.publishTime < endTime);
                 resultList.Add(new StartupViewItem() { IdCount = result, Name = db.StartUp.First(x => x.id == id).name, Id = id });
             }
+            resultList.Sort();
             return View("~/Views/Home/Index.cshtml", resultList.ToArray());
         }
         [HttpGet("/api/getCSV")]
-        public ActionResult GetStatsFile([FromForm] RequestWithTime rq, [FromServices] ApplicationContext db)
+        public ActionResult GetStatsFile(DateTime endTime, DateTime startTime, [FromServices] ApplicationContext db)
         {
-            if (rq.startTime > rq.endTime)
+            if (startTime > endTime)
                 return Ok();
             List<CsvModel> resultList = new();
             for (int id = 0; id < db.StartUp.Count();)
             {
                 List<string> tmp = new();
-                foreach (var model in db.Props.Where(x => x.startId == id & x.publishTime > rq.startTime & x.publishTime < rq.endTime).Select(x => x.link))
+                foreach (var model in db.Props.Where(x => x.startId == id & x.publishTime > startTime & x.publishTime < endTime).Select(x => x.link))
                     tmp.Add(model);
                 resultList.Add(new CsvModel(db.StartUp.First(x => x.id == id).name, tmp.ToArray()));
             }
             StringBuilder sb = new StringBuilder();
-            sb.Append("Name;Count;Links");
+            sb.Append("Name;Count;Links\r\n");
             foreach (var model in resultList)
             {
-                sb.Append(model.Name + ';' + model.MentionCount + ',');
-                foreach (var x in model.Links)
-                    sb.Append(x + ',');
-                sb.Append("\r\n");
-
+                if (model.MentionCount > 0)
+                {
+                    sb.Append(model.Name + ';' + model.MentionCount + ',');
+                    foreach (var x in model.Links)
+                        sb.Append(x + ',');
+                    sb.Append("\r\n");
+                }
             }
 
             return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", "Grid.csv");
@@ -72,16 +76,10 @@ namespace DriveHack.Site.Controllers
         [Route("/details")]
         public ActionResult Details(int id, [FromServices] ApplicationContext db)
         {
-            var links = db.Props.Where(x => x.id == id).Select(x => x.link).AsEnumerable();
+            var links = db.Props.Where(x => x.startId == id).Select(x => x.link).ToArray();
             var name = db.StartUp.First(x => x.id == id).name;
             DetailedViewItem Model = new DetailedViewItem() { Name = name, Links = links };
             return View("~/Views/Home/Details.cshtml", Model);
         }
-    }
-
-    public class RequestWithTime
-    {
-        public DateTime startTime;
-        public DateTime endTime;
     }
 }
